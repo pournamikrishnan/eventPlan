@@ -1,0 +1,13 @@
+.Welcome {
+    background: #51C86D;
+    height: 100vh;
+    text-align: center;
+}
+
+path {
+  pointer-events: all;
+}
+path:hover {
+  opacity: 0.50;
+  cursor: pointer;
+}
