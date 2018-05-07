@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import {modelInstance} from '../data/EventModel';
 import SelectEvent from '../SelectEvent/SelectEvent';
 import Details from '../Details/Details';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 let i;
 let j;
@@ -91,18 +93,53 @@ class Events extends Component {
           return (
               <div className ="Events mt-3">
               <div id='Events'>
-              <ul className="list-group">
-              {eventsEmbedded.map(event =>
-                  <li key={event.id} onClick={this.getDetails} className="list-group-item">
-                    <div className="OneEvent" id={event.id}>
-                      <img alt='eventImg' id='eventImg' src={event.images[0].url} width="100" height="65"></img>
-                      <Link to="/details"><b id={event.id}>{event.name}</b></Link><br/>
-                      {event.dates.start.localTime}<br/>
-                      {event._embedded.venues[0].city.name}, {event._embedded.venues[0].state.name}
-                    </div>
-                  </li>
-                )}
-              </ul>
+              <Carousel showArrows={true} >{eventsEmbedded.map((item, index) => {
+                let event = {
+                  title: item.name,
+                  description: item.info,
+                  location: item._embedded ? item._embedded.venues[0].name : item.place[0].address,
+                  startTime: item.sales.public.startDateTime,
+                  endTime: item.sales.public.startDateTime
+                };
+                      return (
+                        <div>
+                            <img src={item.images[0].url}/>
+                            <p className="legend">{item.name}
+
+                            <div style={{display: "inline", marginLeft: "15px"}}>
+                              <div style={{margin: "0px 15px"}} className="btn btn-primary" onClick={() => window.open(item.url, '_target')}>Buy</div>
+                              {
+                              //   this.state.savedEvents[item.id] ?
+                              //   <div style={{margin: "0px 15px"}} className="btn btn-primary" onClick={this.removeFromEvents.bind(this, item)}>Remove</div>
+                              // :
+                              //   <div style={{margin: "0px 15px"}} className="btn btn-info "onClick={this.addToEvents.bind(this, item)}>Save to list</div>
+                              }
+                              {
+                               //  <div style={{margin: "0px 15px", display: "inline"}} >
+                               // <AddToCalendar event={event}/>
+                               // </div>
+                              }
+                            </div>
+
+                            </p>
+                        </div>
+                      );
+                  })
+                }</Carousel>
+                {
+              // <ul className="list-group">
+              // {eventsEmbedded.map(event =>
+              //     <li key={event.id} onClick={this.getDetails} className="list-group-item">
+              //       <div className="OneEvent" id={event.id}>
+              //         <img alt='eventImg' id='eventImg' src={event.images[0].url} width="100" height="65"></img>
+              //         <Link to="/details"><b id={event.id}>{event.name}</b></Link><br/>
+              //         {event.dates.start.localTime}<br/>
+              //         {event._embedded.venues[0].city.name}, {event._embedded.venues[0].state.name}
+              //       </div>
+              //     </li>
+              //   )}
+              // </ul>
+              }
               <ul className="list-group">
               {eventsPlace.map(event =>
                   <li key={event.id} onClick={this.getDetails} className="list-group-item">
