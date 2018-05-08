@@ -104,22 +104,24 @@ class Events extends Component {
                       return (
                         <div>
                             <img src={item.images[0].url}/>
-                            <p className="legend">{item.name}
-
-                            <div style={{display: "inline", marginLeft: "15px"}}>
-                              <div style={{margin: "0px 15px"}} className="btn btn-primary" onClick={() => window.open(item.url, '_target')}>Buy</div>
+                            <p className="legend">
+                              <span key={item.id} onClick={this.getDetails} >
+                                <Link to="/details"><b id={item.id}>{item.name}</b></Link><br/>
+                              </span>
+                             {item.dates.start.localTime}<br/>
+                             {item._embedded.venues[0].city.name}, {item._embedded.venues[0].state.name}
                               {
+                            // <div style={{display: "inline", marginLeft: "15px"}}>
+                            //   <div style={{margin: "0px 15px"}} className="btn btn-primary" onClick={() => window.open(item.url, '_target')}>Buy</div>
                               //   this.state.savedEvents[item.id] ?
                               //   <div style={{margin: "0px 15px"}} className="btn btn-primary" onClick={this.removeFromEvents.bind(this, item)}>Remove</div>
                               // :
                               //   <div style={{margin: "0px 15px"}} className="btn btn-info "onClick={this.addToEvents.bind(this, item)}>Save to list</div>
-                              }
-                              {
-                               //  <div style={{margin: "0px 15px", display: "inline"}} >
-                               // <AddToCalendar event={event}/>
-                               // </div>
-                              }
-                            </div>
+                              // <div style={{margin: "0px 15px", display: "inline"}} >
+                              // <AddToCalendar event={event}/>
+                              // </div>
+                            // </div>
+                          }
 
                             </p>
                         </div>

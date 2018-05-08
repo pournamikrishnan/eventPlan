@@ -37,8 +37,8 @@ body {
 }
 
 div#Events {
-    height: 50vh;
-    overflow-y: scroll;
+    /* height: 50vh;
+    overflow-y: scroll; */
 }
 
 a:hover {

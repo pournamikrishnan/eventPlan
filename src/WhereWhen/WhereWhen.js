@@ -100,6 +100,14 @@ class WhereWhen extends Component {
                 onChange={this.setDate}
                 value={this.state.date}
               />
+              <div className='btnDiv'>
+              <Link to="/">
+                <button className="backHome btn btn-success mt-5 btn-l"><i className="fa fa-angle-left"></i> Back to Home</button>
+              </Link>
+                <Link to="/search">
+                  <button className="seeTime btn btn-success mt-5 btn-l" onClick={this.currentEventFunc}>See Time <i className="fa fa-angle-right"></i></button>
+                </Link>
+              </div>
 
             </div>
             <div id="searchInput" className='col-md-8'>
@@ -174,14 +182,6 @@ class WhereWhen extends Component {
 
             </div>
           </div>
-        </div>
-        <div className='btnDiv'>
-        <Link to="/">
-          <button className="backHome btn btn-success mt-5 btn-l"><i className="fa fa-angle-left"></i> Back to Home</button>
-        </Link>
-          <Link to="/search">
-            <button className="seeTime btn btn-success mt-5 btn-l" onClick={this.currentEventFunc}>See Time <i className="fa fa-angle-right"></i></button>
-          </Link>
         </div>
       </div>
 
